@@ -5,20 +5,25 @@
 
         <!-- CONTENT GOES HERE -->
         <h1 class="text-xl font-bold p-3">Sales Initiatives</h1>
-        
-        <div class="h-400 min-h-400 max-h-400 border-2 border-dashed border-gray-300 rounded-2xl" >
+
+        <div class="h-fit max-h-400 border-2 border-dashed border-gray-300 rounded-2xl">
             <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
                 <div class="example-box" *ngFor="let initiative of initiatives" cdkDrag>
-                    <fuse-card class="flex flex-col px-8 py-6 pb-4 mb-2" #fuseCard>
+                    <fuse-card class="flex flex-col px-8 py-6 pb-4 mb-2" *ngIf="initiative.accepted == null" #fuseCard>
                         <div class="flex flex-row">
                             <div class="w-full">
+                                <div
+                                    class="font-bold border-2 border-solid rounded w-fit flex justify-content-center p-1 mb-2 bg-slate-50 text-primary drop-shadow-sm">
+                                    Priority: {{initiatives.indexOf(initiative) + 1}}
+                                </div>
                                 <div class="text-lg font-bold">{{initiative.title}}</div>
                                 <div class="mt-2">
-                                   {{initiative.info}}
+                                    {{initiative.info}}
                                 </div>
                                 <div class="mt-2 italic">
                                     Expected payout: {{initiative.price}}
-                                 </div>
+                                </div>
+
                                 <div class="mt-3 -mx-3">
                                     <button class="px-3" mat-button [style.color]="'primary'"
                                         (click)="fuseCard.expanded = !fuseCard.expanded">
@@ -29,25 +34,80 @@
                                             [svgIcon]="'heroicons_solid:chevron-up'"></mat-icon>
                                     </button>
                                 </div>
-        
+
                             </div>
-                            <div class="flex flex-col space-y-2 p-3 w-fit justify-content-center">
-                                <button class="text-end w-max font-medium border-solid border-2 border-green-500 rounded p-2 hover:font-semibold hover:bg-green-200">Accept Initiative</button>
-                                <button class="text-end w-max  font-medium border-solid border-2 border-red-500 rounded p-2 hover:font-semibold hover:bg-red-200">Dimiss Initiative</button>
+                            <div class="flex flex-col space-y-2 p-3 w-fit justify-content-center self-center">
+                                <button
+                                    class="text-end w-max font-medium border-solid border-2 border-green-500 rounded p-2 hover:font-semibold hover:bg-green-200"
+                                    (click)="onAccept(initiative)">Accept Initiative</button>
+                                <button
+                                    class="text-end w-max  font-medium border-solid border-2 border-red-500 rounded p-2 hover:font-semibold hover:bg-red-200"
+                                    (click)="onDimiss(initiative)">Dimiss Initiative</button>
                             </div>
                         </div>
-        
+
                         <!-- Expansion -->
                         <ng-container fuseCardExpansion>
                             <div class="my-2">
                                 This is the expansion and holds an extra information!
                             </div>
                         </ng-container>
+
                     </fuse-card>
                 </div>
             </div>
         </div>
+        <div *ngIf="accepetedInitiative">
+            <h1 class="text-xl font-bold p-3">Accepted Initiatives</h1>
+            <div class="h-fit max-h-400 border-2 border-dashed border-gray-300 rounded-2xl">
+                <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
+                    <ng-container class="example-box" *ngFor="let initiative of initiatives" cdkDrag>
+                        <fuse-card class="flex flex-col px-8 py-6 pb-4 mb-2 bg-lime-100"
+                            *ngIf="initiative.accepted === true" #fuseCard>
+                            <div class="flex flex-row">
+                                <div class="w-full">
+                                    <div
+                                        class="font-bold border-2 border-solid rounded w-fit flex justify-content-center p-1 mb-2 bg-slate-50 drop-shadow-sm">
+                                        Priority: {{initiatives.indexOf(initiative) + 1}}
+                                    </div>
+                                    <div class="text-lg font-bold">{{initiative.title}}</div>
+                                    <div class="mt-2">
+                                        {{initiative.info}}
+                                    </div>
+                                    <div class="mt-2 italic">
+                                        Expected payout: {{initiative.price}}
 
+                                    </div>
+                                    <div class="mt-3 -mx-3">
+                                        <button class="px-3" mat-button [style.color]="'primary'"
+                                            (click)="fuseCard.expanded = !fuseCard.expanded">
+                                            <span class="mr-1">Why should I take it?</span>
+                                            <mat-icon class="icon-size-5" *ngIf="!fuseCard.expanded"
+                                                [svgIcon]="'heroicons_solid:chevron-down'"></mat-icon>
+                                            <mat-icon class="icon-size-5" *ngIf="fuseCard.expanded"
+                                                [svgIcon]="'heroicons_solid:chevron-up'"></mat-icon>
+                                        </button>
+                                    </div>
+
+                                </div>
+                                <div class="flex flex-col space-y-2 p-3 w-fit justify-content-center self-center">
+                                    <button
+                                        class="text-end w-max  font-medium border-solid border-2 border-red-500 rounded p-2 hover:font-semibold hover:bg-red-200"
+                                        (click)="onDimiss(initiative)">Dimiss Initiative</button>
+                                </div>
+                            </div>
+
+                            <!-- Expansion -->
+                            <ng-container fuseCardExpansion>
+                                <div class="my-2">
+                                    This is the expansion and holds an extra information!
+                                </div>
+                            </ng-container>
+                        </fuse-card>
+                    </ng-container>
+                </div>
+            </div>
+        </div>
     </div>
 
 </div>
