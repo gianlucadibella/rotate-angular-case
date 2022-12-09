@@ -31,7 +31,6 @@ export class ExampleComponent
      * Constructor
      */
     constructor(
-        private _httpClient: HttpClient,
     )
     {
         

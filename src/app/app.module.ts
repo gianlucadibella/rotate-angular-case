@@ -14,6 +14,7 @@ import { LayoutModule } from 'app/layout/layout.module';
 import { AppComponent } from 'app/app.component';
 import { appRoutes } from 'app/app.routing';
 import { DragDropModule} from '@angular/cdk/drag-drop';
+import { StepperComponent } from './stepper/stepper.component';
 
 const routerConfig: ExtraOptions = {
     preloadingStrategy       : PreloadAllModules,
@@ -22,7 +23,8 @@ const routerConfig: ExtraOptions = {
 
 @NgModule({
     declarations: [
-        AppComponent
+        AppComponent,
+        StepperComponent
     ],
     imports     : [
         BrowserModule,

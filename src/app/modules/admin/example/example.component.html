@@ -39,10 +39,10 @@
                             <div class="flex flex-col space-y-2 p-3 w-fit justify-content-center self-center">
                                 <button
                                     class="text-end w-max font-medium border-solid border-2 border-green-500 rounded p-2 hover:font-semibold hover:bg-green-200"
-                                    (click)="onAccept(initiative)">Accept Initiative</button>
+                                    (click)="onAccept(initiative)" data-cy="accept">Accept Initiative</button>
                                 <button
                                     class="text-end w-max  font-medium border-solid border-2 border-red-500 rounded p-2 hover:font-semibold hover:bg-red-200"
-                                    (click)="onDimiss(initiative)">Dimiss Initiative</button>
+                                    (click)="onDimiss(initiative)" data-cy="dimiss">Dimiss Initiative</button>
                             </div>
                         </div>
 
@@ -58,7 +58,7 @@
             </div>
         </div>
         <div *ngIf="accepetedInitiative">
-            <h1 class="text-xl font-bold p-3">Accepted Initiatives</h1>
+            <h1 class="text-xl font-bold p-3" data-cy="acceptedInitiatives">Accepted Initiatives</h1>
             <div class="h-fit max-h-400 border-2 border-dashed border-gray-300 rounded-2xl">
                 <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
                     <ng-container class="example-box" *ngFor="let initiative of initiatives" cdkDrag>
@@ -93,7 +93,7 @@
                                 <div class="flex flex-col space-y-2 p-3 w-fit justify-content-center self-center">
                                     <button
                                         class="text-end w-max  font-medium border-solid border-2 border-red-500 rounded p-2 hover:font-semibold hover:bg-red-200"
-                                        (click)="onDimiss(initiative)">Dimiss Initiative</button>
+                                        (click)="onDimiss(initiative)" data-cy="dimissAccepted">Dimiss Initiative</button>
                                 </div>
                             </div>
 
