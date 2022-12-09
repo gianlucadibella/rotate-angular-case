@@ -2,6 +2,7 @@ import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/dr
 import { Component, Injectable, ViewEncapsulation } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { tap } from 'rxjs';
+import { ChartConfiguration, ChartOptions } from 'chart.js';
 
 export interface Initiative {
     title: string;
@@ -23,13 +24,33 @@ export interface Initiative {
 })
 export class ExampleComponent
 {
-    // title = 'To-Do';
-    // taskName  = String;
-    // todoList = String;
-    // arr = [];
-    /**
-     * Constructor
-     */
+    
+    public lineChartData: ChartConfiguration<'line'>['data'] = {
+        labels: [
+          'January',
+          'February',
+          'March',
+          'April',
+          'May',
+          'June',
+          'July'
+        ],
+        datasets: [
+          {
+            data: [ 65, 59, 80, 81, 56, 55, 40 ],
+            label: 'Underrepresented top 10 forwarder',
+            fill: true,
+            tension: 0.5,
+            borderColor: 'black',
+            backgroundColor: 'rgba(255,0,0,0.3)'
+          }
+        ]
+      };
+      public lineChartOptions: ChartOptions<'line'> = {
+        responsive: false
+      };
+      public lineChartLegend = true;
+
     constructor(
     )
     {

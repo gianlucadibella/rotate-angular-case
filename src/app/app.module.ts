@@ -14,6 +14,7 @@ import { LayoutModule } from 'app/layout/layout.module';
 import { AppComponent } from 'app/app.component';
 import { appRoutes } from 'app/app.routing';
 import { DragDropModule} from '@angular/cdk/drag-drop';
+import { NgChartsModule } from 'ng2-charts';
 
 const routerConfig: ExtraOptions = {
     preloadingStrategy       : PreloadAllModules,
@@ -41,7 +42,10 @@ const routerConfig: ExtraOptions = {
         LayoutModule,
 
         // 3rd party modules that require global configuration via forRoot
-        MarkdownModule.forRoot({})
+        MarkdownModule.forRoot({}),
+
+        // Chart module
+        NgChartsModule
     ],
     bootstrap   : [
         AppComponent

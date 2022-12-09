@@ -4,7 +4,7 @@ import { FuseCardModule } from '@fuse/components/card';
 import { ExampleComponent } from 'app/modules/admin/example/example.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { NgForOf, NgIf } from '@angular/common';
-
+import { NgChartsModule } from 'ng2-charts';
 
 const exampleRoutes: Route[] = [
     {
@@ -23,7 +23,8 @@ const exampleRoutes: Route[] = [
         FuseCardModule,
         DragDropModule,
         NgForOf,
-        NgIf
+        NgIf,
+        NgChartsModule
     ]
 })
 export class ExampleModule

@@ -5,7 +5,6 @@
 
         <!-- CONTENT GOES HERE -->
         <h1 class="text-xl font-bold p-3">Sales Initiatives</h1>
-
         <div class="h-fit max-h-400 border-2 border-dashed border-gray-300 rounded-2xl">
             <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
                 <div class="example-box" *ngFor="let initiative of initiatives" cdkDrag>
@@ -45,12 +44,17 @@
                                     (click)="onDimiss(initiative)" data-cy="dimiss">Dimiss Initiative</button>
                             </div>
                         </div>
-
+                        
                         <!-- Expansion -->
                         <ng-container fuseCardExpansion>
-                            <div class="my-2">
-                                This is the expansion and holds an extra information!
-                            </div>
+                            <div style="display: block;" class="my-2 flex justify-content-center place-content-center">
+                                <canvas baseChart width="400" height="400"
+                                  [type]="'line'"
+                                  [data]="lineChartData"
+                                  [options]="lineChartOptions"
+                                  [legend]="lineChartLegend">
+                                </canvas>
+                              </div>
                         </ng-container>
 
                     </fuse-card>
@@ -93,7 +97,8 @@
                                 <div class="flex flex-col space-y-2 p-3 w-fit justify-content-center self-center">
                                     <button
                                         class="text-end w-max  font-medium border-solid border-2 border-red-500 rounded p-2 hover:font-semibold hover:bg-red-200"
-                                        (click)="onDimiss(initiative)" data-cy="dimissAccepted">Dimiss Initiative</button>
+                                        (click)="onDimiss(initiative)" data-cy="dimissAccepted">Dimiss
+                                        Initiative</button>
                                 </div>
                             </div>
 
